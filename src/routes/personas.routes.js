@@ -47,6 +47,28 @@ router.get('/list', async (req, res) => {
     }
 });
 
+router.get('/edit/:id', async (req, res) => {
+    try{
+        const {id} = req.params;
+        const [persona] = await pool.query('SELECT * FROM peronas WHERE id = ?', [id]);
+        const personaEdit = persona[0];
+        res.render('personas/edit', {persona: personaEdit});
+    } catch (err) {
+        res.status(500).json({
+            message: err.message
+        })
+    }
+});
+
+router.post('/edit/:id', async (req, res) => {
+    try{
+
+    } catch {
+        res.status(500).json({
+            message: err.message
+        })
+    }
+})
 
 
 export default router;
